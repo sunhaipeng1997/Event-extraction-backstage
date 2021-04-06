@@ -14,9 +14,9 @@ db = SQLAlchemy(app)
 
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(64), nullable=False)
-    content = db.Column(db.String(100000), nullable=False)
-    result = db.Column(db.String(64), nullable=False)
+    title = db.Column(db.String(64))
+    content = db.Column(db.String(100000))
+    result = db.Column(db.String(64))
 
     def to_json(self):
         dict = self.__dict__
@@ -24,31 +24,31 @@ class Article(db.Model):
             del dict["_sa_instance_state"]
         return dict
 
-class Student(db.Model):
-    __tablename__ = "student"
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), nullable=False)
-    gender = db.Column(db.Enum("男", "女"), nullable=False)
-    phone = db.Column(db.String(11),unique=True)
-
-
-class Course(db.Model):
-    __tablename__ = "course"
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), nullable=False)
-
-
-class Teacher(db.Model):
-    __tablename__ = "teacher"
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), nullable=False)
-    gender = db.Column(db.Enum("男", "女"), nullable=False)
-    phone = db.Column(db.String(11), unique=True)
-
-
-class Grade(db.Model):
-    __tablename__ = "grade"
-    id = db.Column(db.Integer, primary_key=True)
+# class Student(db.Model):
+#     __tablename__ = "student"
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(64), nullable=False)
+#     gender = db.Column(db.Enum("男", "女"), nullable=False)
+#     phone = db.Column(db.String(11),unique=True)
+#
+#
+# class Course(db.Model):
+#     __tablename__ = "course"
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(64), nullable=False)
+#
+#
+# class Teacher(db.Model):
+#     __tablename__ = "teacher"
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(64), nullable=False)
+#     gender = db.Column(db.Enum("男", "女"), nullable=False)
+#     phone = db.Column(db.String(11), unique=True)
+#
+#
+# class Grade(db.Model):
+#     __tablename__ = "grade"
+#     id = db.Column(db.Integer, primary_key=True)
 
 
 
