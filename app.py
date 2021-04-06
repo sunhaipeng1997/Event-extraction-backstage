@@ -28,9 +28,10 @@ def get_articles():
 
 
 @app.route(PREFIX+'/addArticle', methods=['POST'])
-def create_article():
+def add_article():
     content = request.get_json()['data']['content']
-    result = request.get_json()['data']['result']
+    ## 把数据字典转化为json字符串储存
+    result = json.dumps(request.get_json()['data']['result'], ensure_ascii=False)
     article = Article(content=content, result=result)
     db.session.add(article)
     db.session.commit()
@@ -50,7 +51,17 @@ def handle_article():
     ## post的时候，将data字典形式的参数用json包转换成json格式。
     response = requests.post(url=url, headers=headers, data=data.encode("UTF-8"))
     print(response)
-    result = response.text
+    ## 把json字符串转化为数据字典
+    data = json.loads(response.text)
+    result = {
+        'event': data['事件'],
+        'casualties': data['伤亡损失'],
+        'organization': data['救援组织'],
+        'reason': data['火灾原因'],
+        'location': data['火灾地点'],
+        'time': data['火灾时间'],
+        'word': data['触发词'],
+    }
     return jsonify(result), 200
 
 
