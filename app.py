@@ -53,16 +53,7 @@ def handle_article():
     print(response)
     ## 把json字符串转化为数据字典
     data = json.loads(response.text)
-    result = {
-        'event': data['事件'],
-        'casualties': data['伤亡损失'],
-        'organization': data['救援组织'],
-        'reason': data['火灾原因'],
-        'location': data['火灾地点'],
-        'time': data['火灾时间'],
-        'word': data['触发词'],
-    }
-    return jsonify(result), 200
+    return jsonify(data), 200
 
 
 @app.route(PREFIX+'/deleteArticle', methods=['POST'])
